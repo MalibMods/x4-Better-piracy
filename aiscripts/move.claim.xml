@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <diff>
-	<!-- Permanently remove Hull and Component Damage caused by marine claiming -->
-	<!-- This prevents the claim pod from damaging the captured ship -->
+	<!-- Remove all the hull and component damage caused by "Marine claiming" -->
+	<!-- This selector matches lines 117 and 224 -->
 	<remove sel="/aiscript/attention[@min='unknown']/actions/do_if[@value='this.ship == $target']/do_if[@value='$damagemaxpercent gt 0']"/>
 	<remove sel="/aiscript/attention[@min='visible']/actions/do_if[@value='this.ship == $target']/do_if[@value='$damagemaxpercent gt 0']"/>
+
+	<!-- Avoid having marines looping arround the target -->
+	<!-- This selector matches lines 31 -->
+	<add sel="//move_to[@flightbehaviour='flightbehaviour.default']" type="@chance">0</add>
+	<!-- This selector matches lines 43 -->
+	<remove sel="//disable_collision_response"/>
+	<!-- This selector matches lines 59 -->
+	<replace sel="//move_to[@flightbehaviour='flightbehaviour.droneattach']">
+		<move_to
+			destination="$target"
+			object="this.ship"
+			uselocalhighways="false"
+			forcesteering="false"
+			finishonapproach="false"
+			travel="true"
+			flightbehaviour="flightbehaviour.generic"
+		>
+			<interrupt>
+				<conditions>
+					<event_object_collided object="this.ship" otherobject="$target"/>
+				</conditions>
+			</interrupt>
+		</move_to>
+		<stop_moving object="this.ship"/>
+	</replace>
 </diff>
