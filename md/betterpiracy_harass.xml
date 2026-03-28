@@ -9,8 +9,8 @@
 			<actions>
 				<debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_harass --- Get_Actions triggered. event.param: %s'.[player.age, event.param]"/>
 				<set_value name="$target" exact="event.param.$object"/>
-				<debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_harass --- Target: %s, isclass.ship: %s, pilot.exists: %s, isoperational: %s, isplayerowned: %s, isunit: %s, islaertower: %s'.[player.age, @$target.knownname, @$target.isclass.ship, @$target.pilot.exists, @$target.isoperational, @$target.isplayerowned, @$target.isunit, @$target.islasertower]"/>
-				<do_if value="$target and $target.isclass.ship and $target.pilot.exists and $target.isoperational and not $target.isplayerowned and not $target.isunit and not $target.islasertower">
+				<debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_harass --- Target: %s, isclass.ship: %s, pilot.exists: %s, isoperational: %s, iscapturable: %s, isplayerowned: %s, isunit: %s, islaertower: %s'.[player.age, @$target.knownname, @$target.isclass.ship, @$target.pilot.exists, @$target.isoperational, @$target.iscapturable, @$target.isplayerowned, @$target.isunit, @$target.islasertower]"/>
+				<do_if value="$target and $target.isclass.ship and $target.pilot.exists and $target.isoperational and $target.iscapturable and not $target.isplayerowned and not $target.isunit and not $target.islasertower">
 					<debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_harass --- Adding Harass action for %s.'.[player.age, $target.knownname]"/>
 					<signal_cue_instantly cue="md.Interact_Menu_API.Add_Action" param="table[
 						$id         = 'betterpiracy_harass',

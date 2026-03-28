@@ -165,7 +165,7 @@
 					</interrupt>
 				</move_to>
 
-				<do_if value="@$target.isoperational">
+				<do_if value="@$target.isoperational and @$target.iscapturable">
 					<!-- Pass signal through player to reach the MD file "betterpiracy_harass.xml", listened in cue "Harass_OperationCreated" -->
 					<debug_to_file name="'BetterPiracy'" text="'%s --- betterpiracy.order.fight.corsair --- %s (%s) found a target: %s (%s).'.[player.age, this.assignedcontrolled.knownname, this.assignedcontrolled.idcode, $target.knownname, $target.knownname]" />
 					<signal_objects object="player.entity" param="'corsair_init_harass'" param2="this.ship" param3="$target" />

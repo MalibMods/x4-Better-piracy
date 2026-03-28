@@ -28,7 +28,7 @@
       <debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_custom_bail_logic  --- %s (%s) triggered bail check on %s (%s).'.[player.age, $attacker.knownname, $attacker.idcode, $target.knownname, $target.idcode]" />
 
       <!-- Determine how many (If any) crew members are going to bail -->
-      <do_if value="$target.pilot.owner != faction.player">
+      <do_if value="$target.iscapturable and $target.pilot.owner != faction.player">
         <!-- Calculate the chance of crew bailing out-->
         <set_value
           name="$ejectchance_base"
