@@ -1,111 +1,135 @@
-# x4-Better-piracy
+# X4 Better Piracy — Updated for X4 8.00
+
 _X4 Foundations mod to improve piracy_
 
-## Compatibility
-Compatible with `3.x`, with and without `Split vendetta`.
+This is a fork of [NomadicBits/x4-Better-piracy](https://github.com/NomadicBits/x4-Better-piracy), which is itself a fork of the original mod by [AlbertoRota](https://github.com/AlbertoRota/x4-Better-piracy). Published with permission from AlbertoRota.
 
-Savegame friendly. (Both adding and removal)
+## Compatibility
+
+Compatible with X4 **8.00**. Savegame friendly (both adding and removal).
+
+## What this fork adds
+
+### Bug fixes for X4 8.00
+- **`notifications.xml`** — Rewrote XPath selectors from index-based to named selectors, which broke silently in X4 8.00.
+- **`conversations.xml`** — Switched from attribute replacement to element replacement for the Surrender dialog, more robust against X4 8.00 internal changes.
+
+### Bug fixes (general)
+- **Harass menu entry was indented** instead of left-aligned like all other entries. Fixed by correcting the section type and removing a stray icon field that caused an extra column offset.
+- **Harass menu entry no longer appears in fleet selection context** — was showing up when multiple ships were selected via box-select, even though it couldn't be used there.
+- **Null-check for `$target`** added in harass menu evaluation to prevent edge-case errors.
+- **Raid mission guard restored** — Harass is hidden during active raid missions, preventing potential conflicts with other mods or scenarios that start with a capture mission.
+
+### New config options
+Two new options in the in-game settings menu:
+- **Harass bailing pilots destroy cargo** (default: off) — Whether fleeing pilots destroy their cargo after a successful harass operation.
+- **Combat bailing pilots destroy cargo** (default: off) — Same, but for ships that bail through regular combat.
+
+### Marine KI fixes (from NomadicBits fork, restored)
+- Marines no longer orbit the target ship endlessly before boarding.
+- Collision response during approach no longer causes marines to get stuck.
+- Travel drive is used reliably when approaching the target.
+
+---
 
 ## Description
-This mod addresses several piracy gameplay-aspects in X4 that I really dislike.
 
-If you want to force some S/M ship to bail or soften an L/XL ship before boarding, right-click it, choose "Harass" and follow the instructions.
+This mod addresses several piracy gameplay aspects in X4 that the original author disliked.
 
-Also, you can configure it as much as you want using the in-game menu.
+If you want to force some S/M ship to bail or soften an L/XL ship before boarding, right-click it, choose **Harass** and follow the mission steps.
 
-## Major changes explanation
+You can configure the mod extensively using the in-game options menu.
 
-### Replaced `Surrender!` dialog option by `Harass` contextual action.
-Replaced the confusing and mostly random `Surrender!` dialog option by a more streamlined `Harass` contextual menu action.
+## Major features
 
-If you want to force some S/M ship to bail, or soften an L/XL ship before boarding, right-click it and choose `Harass`.
+### Removed `Surrender!` dialog option
+The `Surrender!` dialog option has been removed entirely.
 
-That will start a mission, follow the steps and the prize will be yours.
+### Added `Harass` contextual action
+Right-click a ship and choose `Harass` to start a mission. Follow the steps and the ship is yours.
 
-### Create your own pirate gang.
-Subordinates of the ship you are piloting will smartly participate in the "Harass operation", helping you while avoiding killing the target.
+Note: Not all ships can be harassed. Mission ships, plot-critical ships, and other specially flagged ships cannot be captured and will not show the Harass option.
+
+### Create your own pirate gang
+Subordinates of the ship you are piloting will smartly participate in the harass operation, helping you while avoiding killing the target.
 
 Tip: Use ships with a lot of shields and prefer high-shield/low-hull damage weapons for maximum effectiveness.
 
-### Create your own pirate imperium.
-You will be able to instruct your most experienced pilots (3 stars or more) to do harass operations on their own, just assemble a small fleet and assing the `Corsair` default order to their leader.
+### Create your own pirate fleet
+Assign the `Corsair` default order to an experienced pilot (3 stars or more) and they will autonomously harass ships in a sector.
 
-Tip: The _Argon trading station_ in _Hatikvah's Choice I_ is usually full of HOP and ZIA traders (ARG/HAT will not protect nor care about them), that's a good spot to start.
+Tip: The _Argon trading station_ in _Hatikvah's Choice I_ is usually full of HOP and ZIA traders — a good spot to start.
 
-### Added a lot of config options to let you tune the piracy
-Added more than 20 configuration options to let you tune the mod to your likings.
+### Extensive configuration
+More than 20 configuration options to tune the mod to your liking — shield thresholds, hull thresholds, bail chances, pressure timers, crew requirements, and more.
 
-## Minor changes explanation
+## Minor features
 
-### Removed "Ship type penalty" from the bailing calculation
-Before, you were heavily punished if you were flying a ship with a higher `maxHull` than the enemy you were harassing.
+- **Removed ship type penalty** from bail calculations — you are no longer punished for flying a larger ship than your target.
+- **Improved bail notification** — a notification in the lower-left corner shows when crew is bailing.
+- **Piracy is a crime** — successful piracy now affects your reputation with the target's faction.
+- **Stations won't protect fleeing ships** from attackers allied to them.
 
-This has been removed.
-
-### Improved feedback when crew bails
-If the crew is bailing out of the ship, a notification will appear of the lower-left corner detailing it.
-
-### Piracy is a crime!
-By default, nobody cared about piracy, you could hijack 1000 ships in front of them and you will still be their best friend.
-
-Now, piracy is a crime, and if you do it enough, people will consider you a criminal.
-
-### Removed boarding pods orbiting ship when using marines to claim a ship
-When using marines to claim a ship, they will use the "Travel drive" to get closer and they will no longer endlessly orbit it.
-
-### Removed extra damage done when claiming with marines
-Your marines have been instructed to be as careful as you are when claiming ships, so they will no longer cause any extra damage to the ships they claim.
-
-### Stations will not allow a fleeing ship to dock if the attacker is allied to them
-Your allies will no longer protect your enemies from you!
+---
 
 ## Credits
- - vx -> Author of `True Capture`, where a lot of inspiration was drawn.
- - Kevrlet -> Author of `FixBailChance`, where a lot of inspiration was drawn.
- - SirNukes -> Author of `SirNukes Mod Support APIs`.
- - Smashicons -> Author of the image used as Thumbnail (https://www.flaticon.es/autores/smashicons)
- - https://text2voice.org, https://twistedwave.com/online, and https://voicechanger.io/ -> All of them used to create the custom dialog lines.
+
+- **AlbertoRota** — Original mod author ([x4-Better-piracy](https://github.com/AlbertoRota/x4-Better-piracy))
+- **NomadicBits** — Fork with marine KI fixes ([NomadicBits/x4-Better-piracy](https://github.com/NomadicBits/x4-Better-piracy))
+- **vx** — Author of `True Capture`, where a lot of inspiration was drawn
+- **Kevrlet** — Author of `FixBailChance`, where a lot of inspiration was drawn
+- **Gryzli100** — Author of `BetterCapture`, whose notification patching approach was used as a basis for the configurable bail logic
+- **SirNukes** — Author of `SirNukes Mod Support APIs`
+- **Smashicons** — Author of the image used as thumbnail
+
+---
 
 ## Changelog
+
+### 8.00.1 (MalibMods fork)
+- Updated for X4 8.00 compatibility (notifications.xml, conversations.xml)
+- Fixed Harass menu entry indentation
+- Fixed Harass menu entry appearing in fleet selection context
+- Restored raid mission guard
+- Added null-check for target in menu evaluation
+- Added config options for cargo destruction on bail
+- Restored marine KI fixes from NomadicBits fork
+
 ### 0.12.0
- - Updated to use the latest `SirNukes Mod Support APIs` features.
- - Updated German texts. (Thank you @LeLeon)
- - Ships that participate in a successful harass operation will gain experience.
+- Updated to use the latest `SirNukes Mod Support APIs` features.
+- Updated German texts. (Thank you @LeLeon)
+- Ships that participate in a successful harass operation will gain experience.
 ### 0.11.0
- - Created new default order `Corsair`, ships/fleets with this behavior will smartly harass selected enemy targets.
- - Improved Harass operation logic.
- - Improved debug logging.
- - Disabled `combat_reputation_hit` and `harass_reputation_hit`, I need to find a better way of handling it.
- - Stations will not allow a fleeing ship to dock if the attacker is allied to them.
- - Separated changes into `Major changes` and `Minor changes` to increase readability.
+- Created new default order `Corsair`.
+- Improved Harass operation logic.
+- Improved debug logging.
+- Stations will not allow a fleeing ship to dock if the attacker is allied to them.
 ### 0.10.0
- - Subordinates of the player ship will smartly participate in the "Harass operation".
+- Subordinates of the player ship will smartly participate in the harass operation.
 ### 0.9.0
- - Improved logic to avoid having boarding pods orbiting ship when using marines to claim a ship.
+- Improved logic to avoid having boarding pods orbiting ship when using marines to claim a ship.
 ### 0.8.0
- - When using marines to claim a ship, the boarding pod will use the travel drive.
- - Improved logic to avoid having boarding pods orbiting ship when using marines to claim a ship.
+- Travel drive used when marines approach target ship.
 ### 0.7.0
- - Removed boarding pods orbiting ship when using marines to claim a ship.
- - Added German translation.
- - Added French translation.
+- Removed boarding pods orbiting ship when using marines to claim a ship.
+- Added German translation.
+- Added French translation.
 ### 0.6.0
- - Added custom dialog lines during harass operation, now you know that you are threatening them.
- - Minor fixes.
+- Added custom dialog lines during harass operation.
 ### 0.5.0
- - Improved the `Harass` command vs capital ships, now it will only soften them.
- - Added distance checks to the `Harass` command, now you really need to stick on the target.
- - Added a lot of config options.
+- Improved `Harass` vs capital ships.
+- Added distance checks.
+- Added config options.
 ### 0.4.0
- - Reworked all the `RightClick -> Harass` code, not should work much better.
- - Externalized hard-coded texts to I18N files (English and Spanish).
+- Reworked `RightClick -> Harass` code.
+- Externalized texts to I18N files (English and Spanish).
 ### 0.3.0
- - Removed `Surrender!` dialog, replaced it by a more streamlined `RightClick -> Harass`.
- - Added dependency to "SirNukes Mod Support APIs".
+- Removed `Surrender!` dialog, replaced by `RightClick -> Harass`.
+- Added dependency on SirNukes Mod Support APIs.
 ### 0.2.0
- - Forcing a pilot to bail out of their ship will negatively impact your relations with his/her faction.
+- Forcing a pilot to bail now negatively impacts relations with their faction.
 ### 0.1.0
- - Replaced NPCs saying the "Abandon ship!" when they bail by a more discrete, less annoying and more informative notification on the lower-right corner.
- - Expanded `hull%` calculations from `20%` to `75%`, which should make the effects of this mod more gradual.
+- Replaced bail notification with a discrete lower-right corner notification.
+- Expanded hull% calculations from 20% to 75%.
 ### 0.0.0
- - Initial release!
+- Initial release.
