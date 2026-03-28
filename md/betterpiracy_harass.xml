@@ -4,7 +4,10 @@
 		<!-- Add the custom interaction menu entry. -->
 		<cue name="Add_Interact_Actions" instantiate="true">
 			<conditions>
-				<event_cue_signalled cue="md.Interact_Menu_API.Get_Actions"/>
+				<check_all>
+					<event_cue_signalled cue="md.Interact_Menu_API.Get_Actions"/>
+					<check_value value="not (player.activemissiontype == missiontype.raid)"/>
+				</check_all>
 			</conditions>
 			<actions>
 				<debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_harass --- Get_Actions triggered. event.param: %s'.[player.age, event.param]"/>
