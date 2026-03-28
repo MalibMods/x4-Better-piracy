@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Specific language file: applies to German only -->
+<language id="49">
+  <page id="61537" title="Better piracy texts" descr="0" voice="no">
+    <!-- Harass order related texts -->
+    <t id="5050">Schikanieren</t>
+    <t id="5051">Schikaniert ein Ziel direkt oder unterstützt eine Schikaneoperation</t>
+    <t id="5052">Kaperflotte</t>
+    <t id="5053">Bildet eine Kaperflotte, um Schiffe im Sektor zu schikanieren und zu übernehmen.</t>
+    <t id="5054">Kapere Schiffsgröße S </t>
+    <t id="5055">Kapere Schiffsgröße M</t>
+    <t id="5056">Kapere Kampfschiffe</t>
+    <t id="5057">Kapere Handelsschiffe</t>
+    <t id="5058">Kapere Schürferschiffe</t>
+    <!-- Harass mission related texts -->
+    <t id="5100">Schikanieren</t>
+    <t id="5101">(Harass mission title)Gegnercrew schikanieren </t>
+    <t id="5102">(Harass mission description)Aufgaben zur Schikane von Crews </t>
+    <t id="5103">(Increase pressure objective)Verstärke den Druck! </t>
+    <t id="5104">(Maintain pressure objective)Druck aufrecht erhalten </t>
+    <t id="5105">(Damage shields)Senke ihre Schildstärke </t>
+    <t id="5106">(Damage hull)Beschädige ihre Hülle </t>
+    <t id="5107">(Approach)Distanz zum Ziel verringern! </t>
+    <t id="5108">(Keep pressing)Nicht das Ziel töten! </t>
+    <t id="5109">(Claim)Das Schiff wurde aufgegeben. </t>
+    <t id="5110">(Board)Starte den Entervorgang. </t>
+    <!-- Config related texts -->
+    <t id="5150">(Menu category)Better piracy - Einstellungen</t>
+    <t id="5151">(Harass shield threshold name)Schwellenwert: Schild</t>
+    <t id="5152">(Harass shield threshold mouseover)Wenn während einer Schikaneoperation der Schild des Ziels über diesen Prozentsatz steigt, wird die Operation auf die Aufgabe "Senke ihre Schildstärke" zurückgesetzt.\n\nGenerell wird die Aufgabe "Senke ihre Schildstärke" 10% unter diesem Schwellenwert abgeschlossen.</t>
+    <t id="5153">(Early harass hull threshold name)Schwellenwert: Hülle - 1. Phase</t>
+    <t id="5154">(Early harass hull threshold mouseover)Wenn während einer Schikaneoperation die Hülle des Ziels über diesen Prozentsatz steigt, wird die Operation auf die Aufgabe "Beschädige ihre Hülle" zurückgesetzt.</t>
+    <t id="5155">(Harass bail attemps before mid name)Crewausstiegsabfragen bis zur 2. Phase</t>
+    <t id="5156">(Harass bail attemps before mid mouseover)Sobald diese Anzahl an Crewausstiegsabfragen durch "Druck aufrecht erhalten" erreicht wird, gilt der Hüllenschwellenwert der 2. Phase.</t>
+    <t id="5157">(Mid harass hull threshold name)Schwellenwert: Hülle - 2. Phase</t>
+    <t id="5158">(Mid harass hull threshold mouseover)Wenn während der 2. Phase die Hülle des Ziels über diesen Prozentsatz steigt, wird die Operation auf die Aufgabe "Beschädige ihre Hülle" zurückgesetzt.</t>
+    <t id="5159">(Harass bail attemps before late name)Crewausstiegsabfragen bis zur 3. Phase</t>
+    <t id="5160">(Harass bail attemps before late mouseover)Sobald diese Anzahl an Crewausstiegsabfragen durch "Druck aufrecht erhalten" erreicht wird, gilt der Hüllenschwellenwert der 3. Phase.</t>
+    <t id="5161">(Late harass hull threshold name)Schwellenwert: Hülle - 3. Phase</t>
+    <t id="5162">(Late harass hull threshold mouseover)Wenn während der 3. Phase die Hülle des Ziels über diesen Prozentsatz steigt, wird die Operation auf die Aufgabe "Beschädige ihre Hülle" zurückgesetzt.</t>
+    <t id="5163">(Keep pressure timer name)Dauer von "Druck aufrecht erhalten"</t>
+    <t id="5164">(Keep pressure timer mouseover)Gibt die Zeit an, wie lange die Aufgabe "Druck aufrecht erhalten" andauern soll.\n\nEine Crewausstiegsabfrage wird nach Ende jeder dieser Aufgaben ausgelöst und ein Punkt für "Druck" wird dem Piloten zugeschrieben.</t>
+    <t id="5165">(Keep pressure max distance - S/M name)Max. Distanz für "Druck aufrecht erhalten" - S/M</t>
+    <t id="5166">(Keep pressure max distance - S/M mouseover)Während einer Schikaneoperation gegen die Klassen S/M schreitet die Aufgabe "Druck aufrecht erhalten" nur innerhalb dieser Distanz fort.\n\nZu weit entfernt, wird die Aufgabe "Distanz zum Ziel verringern" ausgelöst.</t>
+    <t id="5167">(Keep pressure max distance - L/XL name)Max. Distanz für "Druck aufrecht erhalten" - L/XL</t>
+    <t id="5168">(Keep pressure max distance - L/XL mouseover)Während einer Schikaneoperation gegen die Klassen L/XL,schreitet die Aufgabe "Druck aufrecht erhalten" nur innerhalb dieser Distanz fort.\n\nZu weit entfernt, wird die Aufgabe "Distanz zum Ziel verringern" ausgelöst.</t>
+    <t id="5169">(Pressure build-up rate name)"Druck"-Aufbaurate</t>
+    <t id="5170">(Pressure build-up rate mouseover)Gibt an, wie stark die Pilotenmoral des Zielschiffs durch jeden Punkt "Druck" beeinflusst wird.\n\n Ein Punkt "Druck" wird nach jeder erfolgreichen Aufgabe "Druck aufrecht erhalten" hinzugefügt. "Druck" beeinflusst verschiedene Abfragen der Schikaneoperationen.</t>
+    <t id="5171">(Harass L/XL min crew left - Base name)Min. Restbesatzung L/XL - Grundwert</t>
+    <t id="5172">(Harass L/XL min crew left - Base mouseover)Wird während einer Schikaneoperation gegen ein Schiff der Größe L/XL dieser Prozentsatz erreicht, beginnt die Phase "Starte den Entervorgang".</t>
+    <t id="5173">(Harass L/XL min crew left - Pilot name)Min. Restbesatzung L/XL - Pilotenmodifikator</t>
+    <t id="5174">(Harass L/XL min crew left - Pilot mouseover)Der Modifikator wird dem Wert von "Min. Restbesatzung L/XL - Grundwert" hinzu addiert. Die tatsächliche Höhe ist abhängig von den Moralsternen des Zielpiloten. Ein 5-Sterne-Pilot addiert 100% des Modifikatorwertes zu der min. Restbesatzung, 0-Sterne-Piloten nichts. Je höher der Modifikator und die Pilotensterne, desto mehr Crew hat das Gegnerschiff noch an Bord, bevor der Entervorgang beginnt.\n\nPunkte durch "Druck" haben KEINEN Einfluss auf diesen Wert.</t>
+    <t id="5175">(Harass base bail chance name)Schikane: Crewausstiegchance - Grundwert</t>
+    <t id="5176">(Harass base bail chance mouseover)Prozentsatz der im besten Fall nötigen Crewausstiegsabfragen. Je höher, desto eher verlässt die Crew das Schiff.\n\nWird durch verschiedene Faktoren, wie etwa die Pilotenmoral beeinflusst.</t>
+    <t id="5177">(Harass base bail number name)Schikane: Crewausstiegsmenge - Grundwert</t>
+    <t id="5178">(Harass base bail number mouseover)Prozentsatz der Crew, die das Schiff verlässt, wenn eine Crewausstiegsabfrage stattfindet.\n\nWird durch verschiedene Faktoren, wie etwa die Pilotenmoral beeinflusst.</t>
+    <t id="5179">(Harass reputation hit name)Schikane: Ansehensverlust</t>
+    <t id="5180">(Harass reputation hit mouseover)Wenn aktiviert, werden erfolgreiche Schikaneoperationen das Ansehen zur Pilotennation verringern.\n\nEs wird die normale Logik von Egosoft zur kriegerischen Übernahme von Schiffen angewendet.</t>
+    <t id="5181">(Harass bailing pilots damage hull name)Schikane: Hüllenbeschädigung durch Piloten</t>
+    <t id="5182">(Harass bailing pilots damage hull mouseover)Wenn aktiviert, werden durch Schikane zum Ausstieg genötigte Piloten das Schiff beschädigen.\n\nDer verursachte Schaden verhält sich proportional zur Pilotenmoral des Zielschiffs.</t>
+    <t id="5183">(Harass bailing pilots destroy components name)Schikane: Komponentenzerstörung durch Piloten</t>
+    <t id="5184">(Harass bailing pilots destroy components mouseover)Wenn aktiviert, werden durch Schikane zum Ausstieg genötigte Piloten einige Schiffskomponenten zerstören.\n\nDie Anzahl der zerstörten Komponenten ist proportional zur Pilotenmoral des Zielschiffs. Schilde werden nie zerstört.</t>
+    <t id="5185">(Combat base bail chance name)Kampf: Crewausstiegschance - Grundwert</t>
+    <t id="5186">(Combat base bail chance mouseover)Prozentsatz der erfolgreichen Crewausstiegsabfragen bei normalen Raumkämpfen, die im besten Fall benötigt werden, bis die Crew das Zielschiff verlässt. Je höher, desto eher verlässt die Crew das Schiff.\n\n Wird durch verschiedene Faktoren, wie etwa die Pilotenmoral beeinflusst.</t>
+    <t id="5187">(Combat reputation hit name)Kampf: Ansehensverlust</t>
+    <t id="5188">(Combat reputation hit mouseover)Wenn aktiviert, werden erfolgreiche kriegerische Schiffsübernahmen das Ansehen zur Pilotennation verringern.\n\nEs wird die normale Logik von Egosoft zur kriegerischen Übernahme von Schiffen angewendet.</t>
+    <t id="5189">(Combat bailing pilots damage hull name)Kampf: Hüllenbeschädigung durch Piloten</t>
+    <t id="5190">(Combat bailing pilots damage hull mouseover)Wenn aktiviert, werden zum Ausstieg genötigte Piloten das Schiff beschädigen.\n\nDer verursachte Schaden verhält sich proportional zur Pilotenmoral des Zielschiffs.</t>
+    <t id="5191">(Combat bailing pilots destroy components name)Kampf: Komponentenzerstörung durch Piloten</t>
+    <t id="5192">(Combat bailing pilots destroy components mouseover)Wenn aktiviert, werden zum Ausstieg genötigte Piloten einige Schiffskomponenten zerstören.\n\nDie Anzahl der zerstörten Komponenten ist proportional zur Pilotenmoral des Zielschiffs.</t>
+  </page>
+  <!-- Threatening lines -->
+  <page id="61538" title="Better piracy voices" descr="0" voice="yes">
+    <t id="4401">Der Kampf ist vorbei, verlassen Sie umgehend das Schiff!</t>
+    <t id="4402">Wir sind an diesem Schiff interessiert. Machen Sie es uns nicht schwer und geben sofort auf!</t>
+    <t id="4403">Sie haben jetzt nur zwei Optionen: Aufgeben oder sterben!</t>
+    <t id="4404">Wir werden jetzt das Schiff übernehmen. Sie wollen lieber nicht an Bord sein, wenn das passiert!</t>
+    <t id="4405">Sie haben keine Chance. Seien Sie klug und geben Sie auf.</t>
+    <t id="4406">Sind Sie wirklich gewillt zu sterben? Nein? Dann verlassen Sie gefälligst das Schiff!</t>
+    <t id="4407">Sie schaffen es nicht gemeinsam mit dem Schiff heraus, aber Sie können sich selbst retten.</t>
+    <t id="4408">Sie haben Ihren Mut unter Beweis gestellt, nun beweisen Sie besser auch Ihre Klugheit und geben auf!</t>
+    <t id="4409">Ihre Sturheit wird Sie noch umbringen. Geben Sie sofort auf!</t>
+  </page>
+</language>

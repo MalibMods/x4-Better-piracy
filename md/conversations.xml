@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<diff>
+	<!-- Disable hostile surrender option in comms - pirates don't negotiate -->
+	<replace sel="//cue[@name='DefaultComm']//do_if[@value='typeof event.object == datatype.component']//set_value[@name='$surrenderoption']">
+		<set_value name="$surrenderoption" exact="false" comment="Disabled by Better Piracy - pirates don't negotiate"/>
+	</replace>
+</diff>

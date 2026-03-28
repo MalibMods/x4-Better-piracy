@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<diff>
+	<!-- Permanently remove Hull and Component Damage caused by marine claiming -->
+	<!-- This prevents the claim pod from damaging the captured ship -->
+	<remove sel="/aiscript/attention[@min='unknown']/actions/do_if[@value='this.ship == $target']/do_if[@value='$damagemaxpercent gt 0']"/>
+	<remove sel="/aiscript/attention[@min='visible']/actions/do_if[@value='this.ship == $target']/do_if[@value='$damagemaxpercent gt 0']"/>
+</diff>
