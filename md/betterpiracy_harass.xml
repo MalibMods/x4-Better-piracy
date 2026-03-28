@@ -17,8 +17,6 @@
 						$section    = 'order',
 						$text       = {61537, 5050},
 						$mouseover  = {61537, 5051},
-						$icon       = 'order_harass',
-						$mouseover_icon = 'order_harass',
 						$callback   = Harass_OperationCreated,
 						]"/>
 				</do_if>
