@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Create mod archive
+        run: |
+          mkdir -p better_piracy
+          cp -r aiscripts assets libraries md resources t voice content.xml README.md better_piracy/
+          zip -r better_piracy_reforged_${{ steps.version.outputs.version }}.zip better_piracy/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Better Piracy Reforged ${{ steps.version.outputs.version }}
+          files: better_piracy_reforged_${{ steps.version.outputs.version }}.zip
+          generate_release_notes: false
+          body: |
+            ## Better Piracy Reforged ${{ steps.version.outputs.version }}
+
+            Extract `better_piracy/` into your X4 Foundations `extensions/` folder.
+
+            Requires [SirNukes Mod Support APIs](https://www.nexusmods.com/x4foundations/mods/503).
