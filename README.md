@@ -86,6 +86,11 @@ More than 20 configuration options to tune the mod to your liking — shield thr
 
 ## Changelog
 
+### 8.00.2 (MalibMods fork)
+- Migrated config menu to a dedicated submenu (Simple_Menu_API)
+- Added Reset to Defaults button in config menu
+- Config values now persist correctly across mod updates
+
 ### 8.00.1 (MalibMods fork)
 - Updated for X4 8.00 compatibility (notifications.xml, conversations.xml)
 - Fixed Harass menu entry indentation
