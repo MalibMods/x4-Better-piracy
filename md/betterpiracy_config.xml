@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <mdscript name="Betterpiracy_config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://x4libonline.ddns.net/libraries/md.xsd">
   <cues>
-    <cue name="Config">
+    <cue name="Config" version="1">
       <actions>
         <include_actions ref="Reset_Config"/>
       </actions>
     </cue>
+
     <library name="Reset_Config">
       <actions>
         <set_value
@@ -39,319 +40,296 @@
       </actions>
     </library>
 
-    <!-- Register the config menu. -->
-    <cue name="Reset_OnReload" instantiate="true">
+    <!-- Register the submenu entry in Extension Options. -->
+    <cue name="Register_Menu" instantiate="true">
       <conditions>
         <event_cue_signalled cue="md.Simple_Menu_Options.Reloaded"/>
       </conditions>
       <actions>
         <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_shield_threshold',
-            $name       = {61537, 5151},
-            $mouseover  = {61537, 5152},
-            $type       = 'slidercell',
-            $default    = 20,
-            $args       = table[$min = 11, $max = 100, $suffix = '%'],
-            $callback   = OnChange
+          cue="md.Simple_Menu_API.Register_Options_Menu"
+          param="table[
+            $id      = 'betterpiracy_options_menu',
+            $columns = 2,
+            $title   = 'Better Piracy Reforged',
+            $onOpen  = BuildOptionsMenu
           ]"
         />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$early_harass_hull_threshold',
-            $name       = {61537, 5153},
-            $mouseover  = {61537, 5154},
-            $type       = 'slidercell',
-            $default    = 75,
-            $args       = table[$min = 1, $max = 100, $suffix = '%'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_bail_attemps_before_mid',
-            $name       = {61537, 5155},
-            $mouseover  = {61537, 5156},
-            $type       = 'slidercell',
-            $default    = 3,
-            $args       = table[$min = 1, $max = 100],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$mid_harass_hull_threshold',
-            $name       = {61537, 5157},
-            $mouseover  = {61537, 5158},
-            $type       = 'slidercell',
-            $default    = 50,
-            $args       = table[$min = 1, $max = 100, $suffix = '%'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_bail_attemps_before_late',
-            $name       = {61537, 5159},
-            $mouseover  = {61537, 5160},
-            $type       = 'slidercell',
-            $default    = 6,
-            $args       = table[$min = 1, $max = 100],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$late_harass_hull_threshold',
-            $name       = {61537, 5161},
-            $mouseover  = {61537, 5162},
-            $type       = 'slidercell',
-            $default    = 25,
-            $args       = table[$min = 1, $max = 100, $suffix = '%'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$keep_pressure_timer',
-            $name       = {61537, 5163},
-            $mouseover  = {61537, 5164},
-            $type       = 'slidercell',
-            $default    = 10,
-            $args       = table[$min = 0, $max = 30, $suffix = 'seconds'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$keep_pressure_max_distance_sm',
-            $name       = {61537, 5165},
-            $mouseover  = {61537, 5166},
-            $type       = 'slidercell',
-            $default    = 3,
-            $args       = table[$min = 0, $max = 15, $suffix = 'km'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$keep_pressure_max_distance_lxl',
-            $name       = {61537, 5167},
-            $mouseover  = {61537, 5168},
-            $type       = 'slidercell',
-            $default    = 6,
-            $args       = table[$min = 0, $max = 30, $suffix = 'km'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$pressure_buildup_rate',
-            $name       = {61537, 5169},
-            $mouseover  = {61537, 5170},
-            $type       = 'slidercell',
-            $default    = 1,
-            $args       = table[$min = 0, $max = 3, $step = 0.25],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_lxl_min_crew_left_base',
-            $name       = {61537, 5171},
-            $mouseover  = {61537, 5172},
-            $type       = 'slidercell',
-            $default    = 25,
-            $args       = table[$min = 0, $max = 100, $suffix = '%'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_lxl_min_crew_left_pilot',
-            $name       = {61537, 5173},
-            $mouseover  = {61537, 5174},
-            $type       = 'slidercell',
-            $default    = 25,
-            $args       = table[$min = 0, $max = 100, $suffix = '%'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_base_bail_chance',
-            $name       = {61537, 5175},
-            $mouseover  = {61537, 5176},
-            $type       = 'slidercell',
-            $default    = 60,
-            $args       = table[$min = 0, $max = 100, $suffix = '%'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_base_bail_number',
-            $name       = {61537, 5177},
-            $mouseover  = {61537, 5178},
-            $type       = 'slidercell',
-            $default    = 20,
-            $args       = table[$min = 0, $max = 100, $suffix = '%'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_reputation_hit',
-            $name       = {61537, 5179},
-            $mouseover  = {61537, 5180},
-            $type       = 'button',
-            $default    = 1,
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_bailing_pilots_damage_hull',
-            $name       = {61537, 5181},
-            $mouseover  = {61537, 5182},
-            $type       = 'button',
-            $default    = 1,
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_bailing_pilots_destroy_components',
-            $name       = {61537, 5183},
-            $mouseover  = {61537, 5184},
-            $type       = 'button',
-            $default    = 1,
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$harass_bailing_pilots_destroy_cargo',
-            $name       = 'Harass: destroy cargo',
-            $mouseover  = 'When enabled, after Harass operations the bailing crew will remove cargo.',
-            $type       = 'button',
-            $default    = 0,
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$combat_base_bail_chance',
-            $name       = {61537, 5185},
-            $mouseover  = {61537, 5186},
-            $type       = 'slidercell',
-            $default    = 36,
-            $args       = table[$min = 0, $max = 100, $suffix = '%'],
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$combat_reputation_hit',
-            $name       = {61537, 5187},
-            $mouseover  = {61537, 5188},
-            $type       = 'button',
-            $default    = 1,
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$combat_bailing_pilots_damage_hull',
-            $name       = {61537, 5189},
-            $mouseover  = {61537, 5190},
-            $type       = 'button',
-            $default    = 1,
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$combat_bailing_pilots_destroy_components',
-            $name       = {61537, 5191},
-            $mouseover  = {61537, 5192},
-            $type       = 'button',
-            $default    = 1,
-            $callback   = OnChange
-          ]"
-        />
-        <signal_cue_instantly
-          cue = "md.Simple_Menu_Options.Register_Option"
-          param = "table[
-            $category   = {61537, 5150},  
-            $id         = '$combat_bailing_pilots_destroy_cargo',
-            $name       = 'Combat: destroy cargo',
-            $mouseover  = 'When enabled, after combat bailing the crew will remove cargo.',
-            $type       = 'button',
-            $default    = 0,
-            $callback   = OnChange
-          ]"
-        />
+        <cancel_cue cue="this"/>
       </actions>
     </cue>
 
-    <!-- Utility cue to handle the config changes. -->
-    <cue name="OnChange" instantiate="true">
+    <!-- Build the options menu when opened. -->
+    <cue name="BuildOptionsMenu" instantiate="true">
       <conditions>
-        <event_cue_signalled />
+        <event_cue_signalled/>
       </conditions>
       <actions>
-        <debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_config --- Changing %s from %s to %s.'.[player.age, event.param.$id, Config.$Config.{event.param.$id}, event.param.$value]" />        
-        <set_value
-          name="Config.$Config.{event.param.$id}"
-          exact="event.param.$value"
-        />
+        <debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_config --- BuildOptionsMenu: current values: shield=%s, early_hull=%s, bail_mid=%s, mid_hull=%s, bail_late=%s, late_hull=%s, pressure_timer=%s, dist_sm=%s, dist_lxl=%s, buildup=%s, crew_base=%s, crew_pilot=%s, bail_chance=%s, bail_num=%s, rep_hit=%s, dmg_hull=%s, destroy_comp=%s, destroy_cargo=%s, combat_bail=%s, combat_rep=%s, combat_dmg=%s, combat_comp=%s, combat_cargo=%s'.[player.age, Config.$Config.$harass_shield_threshold, Config.$Config.$early_harass_hull_threshold, Config.$Config.$harass_bail_attemps_before_mid, Config.$Config.$mid_harass_hull_threshold, Config.$Config.$harass_bail_attemps_before_late, Config.$Config.$late_harass_hull_threshold, Config.$Config.$keep_pressure_timer, Config.$Config.$keep_pressure_max_distance_sm, Config.$Config.$keep_pressure_max_distance_lxl, Config.$Config.$pressure_buildup_rate, Config.$Config.$harass_lxl_min_crew_left_base, Config.$Config.$harass_lxl_min_crew_left_pilot, Config.$Config.$harass_base_bail_chance, Config.$Config.$harass_base_bail_number, Config.$Config.$harass_reputation_hit, Config.$Config.$harass_bailing_pilots_damage_hull, Config.$Config.$harass_bailing_pilots_destroy_components, Config.$Config.$harass_bailing_pilots_destroy_cargo, Config.$Config.$combat_base_bail_chance, Config.$Config.$combat_reputation_hit, Config.$Config.$combat_bailing_pilots_damage_hull, Config.$Config.$combat_bailing_pilots_destroy_components, Config.$Config.$combat_bailing_pilots_destroy_cargo]"/>
+
+        <!-- ── Harass Settings ── -->
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan=2, $text='Harass Settings']"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5151}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='harass_shield_threshold',
+          $min=11, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$harass_shield_threshold,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5153}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='early_harass_hull_threshold',
+          $min=1, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$early_harass_hull_threshold,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5155}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='harass_bail_attemps_before_mid',
+          $min=1, $max=100, $step=1,
+          $start=Config.$Config.$harass_bail_attemps_before_mid,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5157}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='mid_harass_hull_threshold',
+          $min=1, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$mid_harass_hull_threshold,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5159}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='harass_bail_attemps_before_late',
+          $min=1, $max=100, $step=1,
+          $start=Config.$Config.$harass_bail_attemps_before_late,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5161}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='late_harass_hull_threshold',
+          $min=1, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$late_harass_hull_threshold,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5163}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='keep_pressure_timer',
+          $min=0, $max=30, $step=1, $suffix=' seconds',
+          $start=Config.$Config.$keep_pressure_timer,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5165}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='keep_pressure_max_distance_sm',
+          $min=0, $max=15, $step=1, $suffix=' km',
+          $start=Config.$Config.$keep_pressure_max_distance_sm,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5167}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='keep_pressure_max_distance_lxl',
+          $min=0, $max=30, $step=1, $suffix=' km',
+          $start=Config.$Config.$keep_pressure_max_distance_lxl,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5169}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='pressure_buildup_rate',
+          $min=0, $max=3, $step=0.25,
+          $start=Config.$Config.$pressure_buildup_rate,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5171}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='harass_lxl_min_crew_left_base',
+          $min=0, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$harass_lxl_min_crew_left_base,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5173}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='harass_lxl_min_crew_left_pilot',
+          $min=0, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$harass_lxl_min_crew_left_pilot,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5175}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='harass_base_bail_chance',
+          $min=0, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$harass_base_bail_chance,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5177}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='harass_base_bail_number',
+          $min=0, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$harass_base_bail_number,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5179}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_CheckBox" param="table[
+          $col=2, $id='harass_reputation_hit',
+          $checked=Config.$Config.$harass_reputation_hit == 1,
+          $width='Helper.standardButtonHeight', $height='Helper.standardButtonHeight',
+          $onClick=OnCheckboxChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5181}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_CheckBox" param="table[
+          $col=2, $id='harass_bailing_pilots_damage_hull',
+          $checked=Config.$Config.$harass_bailing_pilots_damage_hull == 1,
+          $width='Helper.standardButtonHeight', $height='Helper.standardButtonHeight',
+          $onClick=OnCheckboxChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5183}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_CheckBox" param="table[
+          $col=2, $id='harass_bailing_pilots_destroy_components',
+          $checked=Config.$Config.$harass_bailing_pilots_destroy_components == 1,
+          $width='Helper.standardButtonHeight', $height='Helper.standardButtonHeight',
+          $onClick=OnCheckboxChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='Harass: destroy cargo']"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_CheckBox" param="table[
+          $col=2, $id='harass_bailing_pilots_destroy_cargo',
+          $checked=Config.$Config.$harass_bailing_pilots_destroy_cargo == 1,
+          $width='Helper.standardButtonHeight', $height='Helper.standardButtonHeight',
+          $onClick=OnCheckboxChange
+        ]"/>
+
+        <!-- ── Combat Settings ── -->
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $colSpan=2, $text='Combat Settings']"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5185}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Slider" param="table[
+          $col=2, $id='combat_base_bail_chance',
+          $min=0, $max=100, $step=1, $suffix='%',
+          $start=Config.$Config.$combat_base_bail_chance,
+          $onSliderCellConfirm=OnSliderChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5187}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_CheckBox" param="table[
+          $col=2, $id='combat_reputation_hit',
+          $checked=Config.$Config.$combat_reputation_hit == 1,
+          $width='Helper.standardButtonHeight', $height='Helper.standardButtonHeight',
+          $onClick=OnCheckboxChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5189}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_CheckBox" param="table[
+          $col=2, $id='combat_bailing_pilots_damage_hull',
+          $checked=Config.$Config.$combat_bailing_pilots_damage_hull == 1,
+          $width='Helper.standardButtonHeight', $height='Helper.standardButtonHeight',
+          $onClick=OnCheckboxChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text={61537, 5191}]"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_CheckBox" param="table[
+          $col=2, $id='combat_bailing_pilots_destroy_components',
+          $checked=Config.$Config.$combat_bailing_pilots_destroy_components == 1,
+          $width='Helper.standardButtonHeight', $height='Helper.standardButtonHeight',
+          $onClick=OnCheckboxChange
+        ]"/>
+
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Text" param="table[$col=1, $text='Combat: destroy cargo']"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_CheckBox" param="table[
+          $col=2, $id='combat_bailing_pilots_destroy_cargo',
+          $checked=Config.$Config.$combat_bailing_pilots_destroy_cargo == 1,
+          $width='Helper.standardButtonHeight', $height='Helper.standardButtonHeight',
+          $onClick=OnCheckboxChange
+        ]"/>
+
+        <!-- ── Reset ── -->
+        <signal_cue_instantly cue="md.Simple_Menu_API.Add_Row"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Make_Button" param="table[
+          $col=1, $colSpan=2,
+          $text=table[$text='Reset to Defaults'],
+          $onClick=OnReset
+        ]"/>
+
+        <cancel_cue cue="this"/>
       </actions>
     </cue>
 
-</cues>
+    <!-- Slider value changed. -->
+    <cue name="OnSliderChange" instantiate="true">
+      <conditions>
+        <event_cue_signalled/>
+      </conditions>
+      <actions>
+        <debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_config --- Slider changed: %s = %s'.[player.age, event.param.$id, event.param.$value]"/>
+        <set_value name="Config.$Config.{'$' + event.param.$id}" exact="event.param.$value"/>
+        <cancel_cue cue="this"/>
+      </actions>
+    </cue>
+
+    <!-- Checkbox toggled. -->
+    <cue name="OnCheckboxChange" instantiate="true">
+      <conditions>
+        <event_cue_signalled/>
+      </conditions>
+      <actions>
+        <debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_config --- Checkbox changed: %s = %s'.[player.age, event.param.$id, event.param.$checked]"/>
+        <set_value name="Config.$Config.{'$' + event.param.$id}" exact="if event.param.$checked then 1 else 0"/>
+        <cancel_cue cue="this"/>
+      </actions>
+    </cue>
+
+    <!-- Reset all values to defaults and refresh the menu. -->
+    <cue name="OnReset" instantiate="true">
+      <conditions>
+        <event_cue_signalled/>
+      </conditions>
+      <actions>
+        <debug_to_file name="'BetterPiracy'" text="'%s --- Betterpiracy_config --- Reset to defaults.'.[player.age]"/>
+        <include_actions ref="Reset_Config"/>
+        <signal_cue_instantly cue="md.Simple_Menu_API.Refresh_Menu"/>
+        <cancel_cue cue="this"/>
+      </actions>
+    </cue>
+
+  </cues>
 </mdscript>
