@@ -20,7 +20,7 @@ jobs:
       - name: Create mod archive
         run: |
           mkdir -p better_piracy
-          cp -r aiscripts assets libraries md resources t voice content.xml README.md better_piracy/
+          cp -r aiscripts assets libraries md resources t ui voice content.xml ui.xml README.md better_piracy/
           zip -r better_piracy_reforged_${{ steps.version.outputs.version }}.zip better_piracy/
 
       - name: Create GitHub Release
