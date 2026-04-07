@@ -86,6 +86,9 @@ More than 20 configuration options to tune the mod to your liking — shield thr
 
 ## Changelog
 
+### 8.00.3 (MalibMods fork)
+- Added faction filter to Corsair order
+
 ### 8.00.2 (MalibMods fork)
 - Migrated config menu to a dedicated submenu (Simple_Menu_API)
 - Added Reset to Defaults button in config menu
