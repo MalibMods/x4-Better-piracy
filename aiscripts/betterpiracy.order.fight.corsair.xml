@@ -17,6 +17,12 @@
 			<param name="harass_combat_ships" default="false" type="bool" text="{61537, 5056}" /> <!-- purpose.fight -->
 			<param name="harass_trader_ships" default="true" type="bool" text="{61537, 5057}" /> <!-- purpose.trade -->
 			<param name="harass_miner_ships" default="true" type="bool" text="{61537, 5058}" /> <!-- purpose.mine -->
+
+			<param name="faction_refs" default="[]" type="list" text="{61537, 5059}" comment="Optional: add one ship or station per faction to target (empty = all hostile factions)">
+				<input_param name="type" value="'object'"/>
+				<input_param name="class" value="[class.ship, class.station]"/>
+				<input_param name="bpFactionRef" value="1"/>
+			</param>
 		</params>
 		<skill min="60"/>
 		<requires>
@@ -60,7 +66,7 @@
 			<set_value name="$position" exact="$destination.{2}" />
 		</do_if>
 
-		<debug_to_file name="'BetterPiracy'" text="'%s --- betterpiracy.order.fight.corsair --- %s (%s) initialized Corsair: $destination = %s, $radius = %s, $harass_s_ships = %s, $harass_m_ships = %s, $harass_combat_ships = %s, $harass_trader_ships = %s, $harass_miner_ships = %s.'.[player.age, this.assignedcontrolled.knownname, this.assignedcontrolled.idcode, $destination, $radius, $harass_s_ships, $harass_m_ships, $harass_combat_ships, $harass_trader_ships, $harass_miner_ships]" />
+		<debug_to_file name="'BetterPiracy'" text="'%s --- betterpiracy.order.fight.corsair --- %s (%s) initialized Corsair: $destination = %s, $radius = %s, $harass_s_ships = %s, $harass_m_ships = %s, $harass_combat_ships = %s, $harass_trader_ships = %s, $harass_miner_ships = %s, $faction_refs = %s.'.[player.age, this.assignedcontrolled.knownname, this.assignedcontrolled.idcode, $destination, $radius, $harass_s_ships, $harass_m_ships, $harass_combat_ships, $harass_trader_ships, $harass_miner_ships, $faction_refs]" />
 	</init>
 	<attention min="unknown">
 		<actions>
@@ -124,6 +130,16 @@
 				<append_to_list name="$targetpurposes" exact="purpose.mine" />
 			</do_if>
 
+			<!-- Generate target filters - targetfactions (empty = all hostile factions) -->
+			<set_value name="$targetfactions" exact="[]" />
+			<do_for_each name="$ref" in="$faction_refs">
+				<debug_to_file name="'BetterPiracy'" text="'%s --- corsair --- faction_ref: %s, trueowner=%s'.[player.age, @$ref, @$ref.trueowner]" />
+				<do_if value="@$ref.trueowner and @$ref.trueowner != faction.ownerless and not $targetfactions.indexof.{$ref.trueowner}">
+					<append_to_list name="$targetfactions" exact="$ref.trueowner" />
+				</do_if>
+			</do_for_each>
+			<debug_to_file name="'BetterPiracy'" text="'%s --- corsair --- targetfactions built: count=%s, list=%s'.[player.age, $targetfactions.count, $targetfactions]" />
+
 			<!-- Required for all infinite orders, no effect in case of finite timeout -->
 			<set_order_syncpoint_reached order="this.ship.order" />
 
@@ -151,16 +167,37 @@
 										<!-- either hostile factions or with SCA paintmod (makes more sense than knowing true owner) -->
 										<match_relation_of faction="this.trueowner" comparison="lt" relation="neutral" />
 										<match_paint_mod ware="paintmod_0005" />
+										<!-- when a faction filter is active, also match those factions even if not hostile -->
+										<match trueowner="$targetfactions" />
 									</match_any>
 									<match trueowner="[this.trueowner, faction.ownerless]" negate="true" />
 								</count_gravidar_contacts>
 								<check_any exact="$detected.count" counter="$i">
 									<check_value value="$targetpurposes.indexof.{@$detected.{$i}.primarypurpose}" />
 								</check_any>
+								<check_any>
+									<check_value value="$targetfactions.count == 0" />
+									<check_any exact="$detected.count" counter="$j">
+										<check_value value="$targetfactions.indexof.{@$detected.{$j}.trueowner}" />
+									</check_any>
+								</check_any>
 							</check_all>
 						</conditions>
 						<actions>
-							<set_value name="$target" exact="$detected.{1}" />
+							<debug_to_file name="'BetterPiracy'" text="'%s --- corsair --- interrupt fired: detected.count=%s, targetfactions.count=%s, detected=%s'.[player.age, $detected.count, $targetfactions.count, $detected]" />
+							<do_if value="$targetfactions.count gt 0">
+								<remove_value name="$target" />
+								<do_for_each name="$candidate" in="$detected">
+									<debug_to_file name="'BetterPiracy'" text="'%s --- corsair --- candidate: %s, trueowner=%s, indexof=%s'.[player.age, @$candidate, @$candidate.trueowner, $targetfactions.indexof.{@$candidate.trueowner}]" />
+									<do_if value="not $target? and $targetfactions.indexof.{@$candidate.trueowner}">
+										<set_value name="$target" exact="$candidate" />
+									</do_if>
+								</do_for_each>
+								<debug_to_file name="'BetterPiracy'" text="'%s --- corsair --- after loop: target=%s, target?=%s'.[player.age, @$target, $target?]" />
+							</do_if>
+							<do_else>
+								<set_value name="$target" exact="$detected.{1}" />
+							</do_else>
 						</actions>
 					</interrupt>
 				</move_to>
